@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainViewController">
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginViewController">
    <children>
       <VBox prefHeight="720.0" prefWidth="1200.0">
          <children>
@@ -27,17 +27,17 @@
             </TableView>
             <ToolBar prefHeight="63.0" prefWidth="1200.0">
               <items>
-                <Button fx:id="btnOk" mnemonicParsing="false" onAction="#onBtNovo" text="Adicionar">
+                <Button fx:id="btnOk" mnemonicParsing="false" onAction="#onBtnNovo" text="Adicionar">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" text="Editar">
+                  <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#onBtnEditar" text="Editar">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" text="Apagar">
+                  <Button fx:id="btnDeletar" mnemonicParsing="false" onAction="#onBtnApagar" text="Apagar">
                      <font>
                         <Font size="15.0" />
                      </font>
