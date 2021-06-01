@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import model.Funcionario;
 import model.Produtos;
 import model.dao.FuncionarioDaoJdbc;
+import model.dao.ProdutosDAO;
 import model.dao.ProdutosDaoJdbc;
 
 //tella inicial
@@ -81,7 +82,7 @@ public class MainAula extends Application {
 //		p.setPreco(1500.5);
 //		p.setId(2);
 //		
-//		ProdutosDaoJdbc produtosDao = new ProdutosDaoJdbc(conn);
+	ProdutosDaoJdbc produtosDao = new ProdutosDaoJdbc(conn);
 //		produtosDao.insert(p);
 //		System.out.println("Tudo ok");
 //		System.exit(0);
@@ -94,12 +95,19 @@ public class MainAula extends Application {
 		funcionarioDao.update(obj);
 		Funcionario p2 = (Funcionario)funcionarioDao.findById(1);
 		System.out.println("o produto encontrado " + p2.getNome());
+		
+	
+		
+//		List<Funcionario> func = funcionarioDao.findAll();
+//		for(Funcionario f:func) {
+//			System.out.println(f.getNome());
+//		}
+		List<Produtos> pro = produtosDao.findAll();
+		pro.forEach(p ->{
+			System.out.println(p.getNome());
+		});
 		Conection.closeConnection();
-		obj=(Funcionario) funcionarioDao.findAll();
-		System.out.println(obj);
 		
-		
-			
 //		launch(args);
 	}
 }

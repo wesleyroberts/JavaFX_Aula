@@ -83,7 +83,7 @@ public class FuncionarioDaoJdbc implements FuncionarioDAO {
 			
 			PreparedStatement st = null;
 			ResultSet rs = null;
-			List<Funcionario> lista = new ArrayList<Funcionario>();
+			List<Funcionario> listaFuncionario = new ArrayList<Funcionario>();
 			try {
 				String sql=" Select id,nome,cpf from funcionario";
 				st = (PreparedStatement) conn.prepareStatement(sql);
@@ -98,14 +98,13 @@ public class FuncionarioDaoJdbc implements FuncionarioDAO {
 					funcionario.setId(id_f);
 					funcionario.setCpf(cpf);
 					funcionario.setNome(nome);
-					lista.set(id_f, funcionario);
-					System.out.println(funcionario.getNome()+" "+funcionario.getNome());
+					listaFuncionario.add(funcionario);
 					
 				}
 			} catch (Exception e) {
 						
 			}
-		return lista ;
+		return listaFuncionario ;
 	}
 	@Override
 	public void update(Funcionario obj) {

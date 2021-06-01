@@ -2,6 +2,7 @@ package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mysql.jdbc.Connection;
@@ -10,6 +11,7 @@ import com.mysql.jdbc.Statement;
 
 import DataBase.Conection;
 import DataBase.DbException;
+import model.Funcionario;
 import model.Produtos;
 
 public class ProdutosDaoJdbc implements ProdutosDAO {
@@ -84,8 +86,32 @@ public class ProdutosDaoJdbc implements ProdutosDAO {
 
 	@Override
 	public List<Produtos> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		List<Produtos> listaProdutos = new ArrayList<Produtos>();
+		try {
+			String sql=" Select id,nome,descricao,preco from Produtos";
+			st = (PreparedStatement) conn.prepareStatement(sql);
+			rs = st.executeQuery();
+	
+			while(rs.next()) {
+				int id_f = rs.getInt("id");
+				String nome =rs.getString("Nome");
+				String descricao = rs.getString("descricao");
+				Double preco = rs.getDouble("preco");
+				
+				Produtos produtos = new Produtos();
+				produtos.setId(id_f);
+				produtos.setDescription(descricao);
+				produtos.setNome(nome);
+				produtos.setPreco(preco);
+				listaProdutos.add(produtos);
+				
+			}
+		} catch (Exception e) {
+					
+		}
+	return listaProdutos ;
 	}
 
 	@Override
