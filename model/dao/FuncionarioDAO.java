@@ -6,7 +6,7 @@ import model.Funcionario;
 
 public interface FuncionarioDAO {
 	//create
-	Integer insert(Funcionario obj);
+	String insert(Funcionario obj);
 	//recover
 	Object findById(Integer id);
 	//recover all

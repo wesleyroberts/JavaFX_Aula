@@ -9,10 +9,15 @@ public class DAOFactory {
 		return new ProdutosDaoJdbc(Conection.getConnection());
 
 		}
-		public static FuncionarioDAO createFuncuionarioDAO() {
+		public static FuncionarioDAO createFuncionarioDAO() {
 
 		return new FuncionarioDaoJdbc(Conection.getConnection());
 
 		}
-	
+		
+		public static FuncionarioLoginDaoJdbc LoginFuncionarioDAO() {
+
+			return new FuncionarioLoginDaoJdbc(Conection.getConnection());
+
+			}
 }

@@ -20,24 +20,28 @@ public class FuncionarioDaoJdbc implements FuncionarioDAO {
 	public FuncionarioDaoJdbc(Connection conn) {
 	this.conn = conn;
 	}
+	
+	
 	@Override
-	public Integer insert(Funcionario obj) {
-		Integer id = null;
+	public String insert(Funcionario obj) {
+		String cpf = null;
 
 		PreparedStatement st = null;		
 		try {
-			String sql = "INSERT INTO funcionario (Id,nome, cpf) VALUES (?,?,?)";
+			String sql = "INSERT INTO funcionario (nome, cpf,password,email) VALUES (?,?,?,?)";
 			st =(PreparedStatement) conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			st.setInt(1, obj.getId());
-			st.setString(2, obj.getNome());
-			st.setString(3, obj.getCpf());
+			
+			st.setString(1, obj.getNome());
+			st.setString(2, obj.getCpf());
+			st.setString(3,obj.getPassword());
+			st.setString(4, obj.getEmail());
 			int linhas = st.executeUpdate();
 			if(linhas>0) {
 				ResultSet rs = st.getGeneratedKeys(); //retorna o id criado
 				while(rs.next()) {
-				id = rs.getInt(1); //1 é a 1ª e unica coluna
+				cpf = rs.getString("cpf"); //1 é a 1ª e unica coluna
 				}
-				System.out.println("Adicionado com o id: "+ id);
+//				System.out.println("Adicionado com o id: "+ cpf);
 				Conection.closeResultSet(rs); //finaliza o resultSet
 				}
 			} catch (Exception e) {
@@ -46,27 +50,27 @@ public class FuncionarioDaoJdbc implements FuncionarioDAO {
 			Conection.closeStatement(st); //finaliza o Statement
 
 		}
-		return id;
+		return cpf;
 	}
 	@Override
-	public Object findById(Integer id) {
+	public Object findById(Integer cpf) {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		Funcionario	funcionario = new Funcionario();
 		try {
-			String sql = "SELECT Id,nome,cpf FROM funcionario WHERE ID = ?";
+			String sql = "SELECT nome,cpf,email FROM funcionario WHERE cpf= ?";
 			st = (PreparedStatement) conn.prepareStatement(sql);
-			st.setInt(1, id);
+			st.setInt(1, cpf);
 			rs = st.executeQuery();
 			
 			if(rs.next()) {
-				int id_e = rs.getInt("Id");
+				String cpf_e = rs.getString("cpf");
 				String nome = rs.getString("nome");
-				String cpf= rs.getString("cpf");
+				String email= rs.getString("email");
 				
-				funcionario.setId(id_e);
+				funcionario.setCpf(cpf_e);
 				funcionario.setNome(nome); 
-				funcionario.setCpf(cpf);
+				funcionario.setEmail(email);
 								
 			}
 		} catch (SQLException e) {
@@ -90,13 +94,13 @@ public class FuncionarioDaoJdbc implements FuncionarioDAO {
 				rs = st.executeQuery();
 		
 				while(rs.next()) {
-					int id_f = rs.getInt("id");
-					String nome =rs.getString("Nome");
-					String cpf = rs.getString("cpf");
+					String cpf_f = rs.getString("cpf");
+					String nome =rs.getString("nome");
+					String email =rs.getString("email");
 					
 					Funcionario funcionario = new Funcionario();
-					funcionario.setId(id_f);
-					funcionario.setCpf(cpf);
+					funcionario.setCpf(cpf_f);
+					funcionario.setEmail(email);
 					funcionario.setNome(nome);
 					listaFuncionario.add(funcionario);
 					
@@ -110,11 +114,11 @@ public class FuncionarioDaoJdbc implements FuncionarioDAO {
 	public void update(Funcionario obj) {
 		PreparedStatement st = null;
 		try {
-			String sql = "UPDATE funcionario SET Nome=?,cpf=? WHERE Id = ?";
+			String sql = "UPDATE funcionario SET Nome=?,email=?,password=? WHERE cpf = ?";
 			st = (PreparedStatement) conn.prepareStatement(sql);
 			st.setString(1, obj.getNome());
-			st.setString(2, obj.getCpf());
-			st.setInt(3, obj.getId());
+			st.setString(2, obj.getEmail());
+			st.setString(3, obj.getPassword());
 
 			int linhas = st.executeUpdate();
 			if (linhas > 0) {
@@ -128,12 +132,12 @@ public class FuncionarioDaoJdbc implements FuncionarioDAO {
 
 	}
 	@Override
-	public void deleteById(Integer id) {
+	public void deleteById(Integer cpf) {
 		PreparedStatement st = null;
 		try {
-			String sql = "DELETE FROM funcionario WHERE id = ?";
+			String sql = "DELETE FROM funcionario WHERE cpf = ?";
 			st = (PreparedStatement) conn.prepareStatement(sql);
-			st.setInt(1, id);
+			st.setInt(1, cpf);
 			int linhas = st.executeUpdate();
 			if (linhas > 0) {
 				System.out.println("Deletado");
@@ -146,6 +150,9 @@ public class FuncionarioDaoJdbc implements FuncionarioDAO {
 
 		
 	}
+	
+		
+
 	
 	
 

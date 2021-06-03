@@ -1,14 +1,14 @@
 package model;
 
 public class Funcionario {
- private int id; 
- private String nome, cpf;
- 
-public int getId() {
-	return id;
+
+ private String nome,email, cpf,password;
+
+public String getEmail() {
+	return email;
 }
-public void setId(int id) {
-	this.id = id;
+public void setEmail(String email) {
+	this.email = email;
 }
 public String getNome() {
 	return nome;
@@ -22,7 +22,14 @@ public String getCpf() {
 public void setCpf(String cpf) {
 	this.cpf = cpf;
 }
+public String getPassword() {
+	return password;
+}
+public void setPassword(String password) {
+	this.password = password;
+}
  
+
  
 
   	

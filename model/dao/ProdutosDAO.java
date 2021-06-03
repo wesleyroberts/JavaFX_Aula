@@ -6,7 +6,7 @@ import model.Produtos;
 
 public interface ProdutosDAO {
 	
-
+		
 		//create
 		Integer insert(Produtos obj);
 		//recover
