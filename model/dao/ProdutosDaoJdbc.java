@@ -7,11 +7,8 @@ import java.util.List;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.Statement;
-
 import DataBase.Conection;
 import DataBase.DbException;
-import model.Funcionario;
 import model.Produtos;
 
 public class ProdutosDaoJdbc implements ProdutosDAO {
@@ -29,12 +26,11 @@ public class ProdutosDaoJdbc implements ProdutosDAO {
 
 		PreparedStatement st = null;
 		try {
-			String sql = "INSERT INTO Produtos (Id,nome, descricao, preco) VALUES (?,?,?,?)";
+			String sql = "INSERT INTO Produtos (nome, descricao, preco) VALUES (?,?,?)";
 			st = (PreparedStatement) conn.prepareStatement(sql);
-			st.setInt(1, obj.getId());
-			st.setString(2, obj.getNome());
-			st.setString(3, obj.getDescription());
-			st.setDouble(4, obj.getPreco());
+			st.setString(1, obj.getNome());
+			st.setString(2, obj.getDescription());
+			st.setDouble(3, obj.getPreco());
 			int linhas = st.executeUpdate();
 			if (linhas > 0) {
 				System.out.println("Adicionado");

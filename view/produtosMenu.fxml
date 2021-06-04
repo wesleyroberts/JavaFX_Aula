@@ -9,25 +9,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerProdutosView">
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerProdutosView">
    <children>
       <VBox prefHeight="720.0" prefWidth="1200.0">
          <children>
-            <Label text="Produtos">
+            <Label text="CLIENTES">
                <font>
                   <Font name="System Bold Italic" size="42.0" />
                </font>
             </Label>
             <TableView prefHeight="599.0" prefWidth="1200.0">
               <columns>
-                <TableColumn prefWidth="192.0" text="Nome" />
-                <TableColumn prefWidth="160.0" text="Preço" />
-                  <TableColumn prefWidth="847.0" text="descrição" />
+                <TableColumn prefWidth="75.0" text="Cliente" />
+                <TableColumn prefWidth="75.0" text="Divida" />
+                  <TableColumn prefWidth="75.0" text="Data" />
               </columns>
             </TableView>
             <ToolBar prefHeight="63.0" prefWidth="1200.0">
               <items>
-                <Button fx:id="bntAdicionar" mnemonicParsing="false" onAction="#onBtnAdicionar" text="Adicionar">
+                <Button fx:id="btnAdicionar" mnemonicParsing="false" onAction="#onBtnAdicionar" text="Adicionar">
                      <font>
                         <Font size="15.0" />
                      </font>

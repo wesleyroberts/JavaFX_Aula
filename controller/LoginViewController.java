@@ -31,7 +31,7 @@ public class LoginViewController implements Initializable {
 	@FXML
 	private Button btnLogin;
 	
-	public void login() {
+	public boolean login() {
 		Boolean result = false;
 		Funcionario funcionario = new Funcionario();
 		funcionario.setEmail(txtEmail.getText());
@@ -44,24 +44,32 @@ public class LoginViewController implements Initializable {
 			alert.setHeaderText("Resultado do login");
 			alert.setContentText("Login efetuado com Sucesso ");
 			alert.show();
+			return true;
 		}else {
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
 			alert.setTitle("Login");
 			alert.setHeaderText("Resultado do login");
 			alert.setContentText("Erro de login");
 			alert.show();
+			return false;
 		
 		}
 	}
 	
 	// @FXML
 		public void onBtnLogin() {
-			login();
+		boolean tela;
+			tela=login();
+			System.out.println("Tentando mudar a tlea");
+			if(tela == true) {
+				MainAula.mudarTela("menuProdutos");
+			}else{				
+			}
 		}	
 
 	// @FXML
 	public void onBtnCadastrar() {
 		System.out.println("Cadastrar");
-		MainAula.mudarTela("cadastro");
+		MainAula.mudarTela("cadastroFuncionario");
 	}
 }

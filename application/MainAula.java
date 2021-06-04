@@ -16,11 +16,14 @@ import javafx.stage.Stage;
 public class MainAula extends Application {
 	// palco
 	private static Stage stage;
-	// tela inicial
+	// tela Login
 	private static Scene loginScene;
-	// tela cliente
-	private static Scene cadastroScene;
-
+	// tela Cadastro funcionario
+	private static Scene cadastroFuncionarioScene;
+	//tela Cadastro Prodtuos
+	private static Scene cadastroProdutoScene;
+	//tela de Menu Propdutos
+	private static Scene produtosMenuScene;
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -28,10 +31,16 @@ public class MainAula extends Application {
 			primaryStage.setTitle("Contas de Clientes");
 			URL fxmlMainVIew = getClass().getResource("/view/loginView.fxml");
 			Parent parentMaiParentView = FXMLLoader.load(fxmlMainVIew);
-			Parent parentContaView = FXMLLoader.load(getClass().getResource("/view/cadastroFuncionarioView.fxml"));
-			cadastroScene = new Scene(parentContaView);
-
+			Parent parentFuncionarioView = FXMLLoader.load(getClass().getResource("/view/cadastroFuncionarioView.fxml"));
+			Parent parentProdutoView = FXMLLoader.load(getClass().getResource("/view/cadastrarProdutos.fxml"));
+			Parent parentMenuProdutosView = FXMLLoader.load(getClass().getResource("/view/produtosMenu.fxml"));
+			
+			cadastroFuncionarioScene = new Scene(parentFuncionarioView);
+			cadastroProdutoScene = new Scene(parentProdutoView);
+			produtosMenuScene = new Scene(parentMenuProdutosView);
+			
 			loginScene = new Scene(parentMaiParentView);
+			
 			primaryStage.setScene(loginScene);
 			primaryStage.show();
 
@@ -45,8 +54,14 @@ public class MainAula extends Application {
 		case "login":
 			stage.setScene(loginScene);
 			break;
-		case "cadastro":
-			stage.setScene(cadastroScene);
+		case "cadastroFuncionario":
+			stage.setScene(cadastroFuncionarioScene);
+			break;
+		case "cadastroProduto":
+			stage.setScene(cadastroProdutoScene);
+			break;
+		case "menuProdutos":
+			stage.setScene(produtosMenuScene);
 			break;
 
 		}
