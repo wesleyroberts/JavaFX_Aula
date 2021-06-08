@@ -13,16 +13,16 @@
    <children>
       <VBox prefHeight="720.0" prefWidth="1200.0">
          <children>
-            <Label text="CLIENTES">
+            <Label text="Proutos">
                <font>
                   <Font name="System Bold Italic" size="42.0" />
                </font>
             </Label>
-            <TableView prefHeight="599.0" prefWidth="1200.0">
+            <TableView fx:id="TableProdutos" prefHeight="599.0" prefWidth="1200.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Cliente" />
-                <TableColumn prefWidth="75.0" text="Divida" />
-                  <TableColumn prefWidth="75.0" text="Data" />
+                <TableColumn fx:id="TableColumnProduto" prefWidth="139.0" text="Produto" />
+                <TableColumn fx:id="TableColumnPreco" prefWidth="230.0" text="Preço" />
+                  <TableColumn fx:id="TableColumDescricao" prefWidth="634.0" text="Descrição" />
               </columns>
             </TableView>
             <ToolBar prefHeight="63.0" prefWidth="1200.0">

@@ -43,7 +43,7 @@ public class CadastroFuncionarioViewController implements Initializable {
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle("Cadastro de CLietne");
 		alert.setHeaderText("Informações sobre cadastro");
-		alert.setContentText("O Funcionaro " + txtEmail.getText()+ " foi adicionado com Sucesso");
+		alert.setContentText("O Funcionaro " + txtNome.getText()+ " foi adicionado com Sucesso");
 		alert.show();
 		registroFuncionario();
 		
